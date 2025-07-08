@@ -7,6 +7,10 @@ const { detectAIProbability } = require("./aiDetectorService");
 const { saveResult } = require("./storageService");
 
 async function analyzeYoutube(url) {
+  const dataDir = path.join(__dirname, "..", "data");
+  if (!fs.existsSync(dataDir)) {
+    fs.mkdirSync(dataDir, { recursive: true });
+  }
   const id = uuidv4();
   const screenshotPath = path.join("data", `${id}.png`);
   const audioPath = path.join("data", `${id}.wav`);
