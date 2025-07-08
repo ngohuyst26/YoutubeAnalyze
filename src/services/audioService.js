@@ -14,8 +14,13 @@ function downloadAndConvertAudio(url, finalOutputPath) {
   return new Promise((resolve, reject) => {
     const timestamp = new Date().getTime();
     const tempFileName = `temp_audio_${timestamp}.m4a`;
+    const cookies = JSON.parse(fs.readFileSync("cookies.json"));
 
-    ytdl(url, { filter: "audioonly", quality: "highestaudio" })
+    ytdl(url, {
+      filter: "audioonly",
+      quality: "highestaudio",
+      cookie: cookies,
+    })
       .pipe(fs.createWriteStream(tempFileName))
       .on("finish", () => {
         console.log(`Đã tải audio tạm thời thành công: ${tempFileName}`);
