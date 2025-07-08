@@ -1,9 +1,6 @@
 const axios = require("axios");
 const fs = require("fs");
 const FormData = require("form-data");
-const {
-  processElevenLabsTranscriptionBySpeakerOnly,
-} = require("./transcriptionService");
 
 async function transcribeAudio(audioPath) {
   const form = new FormData();
@@ -22,13 +19,8 @@ async function transcribeAudio(audioPath) {
     }
   );
 
-  const transcription = {
-    language_code: res.data.language_code,
-    language_probability: res.data.language_probability,
-    full_text: res.data.text,
-    text: [...processElevenLabsTranscriptionBySpeakerOnly(res.data)],
-  };
-  return transcription || [];
+  // Trả về mảng các câu có {text, start, end, speaker}
+  return res.data || [];
 }
 
 module.exports = { transcribeAudio };

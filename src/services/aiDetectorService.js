@@ -1,20 +1,24 @@
-function detectAIProbability(text) {
-  // Mô phỏng xác suất AI, có thể thay bằng gọi API thực
-  return parseFloat((Math.random() * 0.6).toFixed(2));
-}
+const axios = require("axios");
 
-// async function detectAIProbability(text) {
-//   const res = await axios.post(
-//     "https://api.sapling.ai/api/v1/aidetect",
-//     { text },
-//     {
-//       headers: {
-//         Authorization: `Bearer ${process.env.SAPLING_API_KEY}`,
-//         "Content-Type": "application/json",
-//       },
-//     }
-//   );
-//   return res.data.probability;
-// }
+async function detectAIProbability(text) {
+  const res = await axios.post(
+    "https://api.gptzero.me/v2/predict/text",
+    { document: text, multilingual: false },
+    {
+      headers: {
+        "x-api-key": process.env.GPTZERO_API_KEY,
+        "Content-Type": "application/json",
+      },
+    }
+  );
+  console.log(res.data.documents);
+
+  const data = {
+    ai_probability: res.data.documents[0].completely_generated_prob,
+    sentences: res.data.documents[0].sentences,
+  };
+
+  return data;
+}
 
 module.exports = { detectAIProbability };
