@@ -21,7 +21,8 @@ build/
 *.webm
 
 # Transient data & results
-data/
+data/*
+!data/.gitkeep
 temp/
 *.tmp
 *.cache
