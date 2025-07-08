@@ -22,21 +22,17 @@ async function analyzeYoutube(url) {
   const transcript = await transcribeAudio(audioPath);
 
   // 4. Detect AI probability for each sentence
-  const enrichedTranscript = transcript.text.map((item) => ({
-    ...item,
-    ai_probability: detectAIProbability(item.text),
-  }));
+  const aiProbality = await detectAIProbability(transcript.text);
+  console.log(aiProbality);
 
   // 5. Save result
   const result = {
     screenshot: screenshotPath,
     language_code: transcript.language_code,
     language_probability: transcript.language_probability,
-    full_content: transcript.full_text,
-    transcript: enrichedTranscript,
+    content: transcript.text,
+    words: transcript.words,
   };
-
-  console.log(result);
 
   saveResult(resultPath, result);
 
