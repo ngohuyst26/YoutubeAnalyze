@@ -1,0 +1,33 @@
+{
+  "name": "youtubeanalyze",
+  "version": "1.0.0",
+  "description": "Phan tich AI video youtube",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ngohuyst26/youtube-analyze.git"
+  },
+  "author": "Ngo Huy",
+  "license": "",
+  "bugs": {
+    "url": "https://github.com/ngohuyst26/youtube-analyze/issues"
+  },
+  "homepage": "https://github.com/ngohuyst26/youtube-analyze#readme",
+  "dependencies": {
+    "@distube/ytdl-core": "^4.16.12",
+    "@ffmpeg-installer/ffmpeg": "^1.1.0",
+    "axios": "^1.10.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.0.1",
+    "express": "^5.1.0",
+    "fluent-ffmpeg": "^2.1.3",
+    "multer": "^2.0.1",
+    "puppeteer": "^24.11.2",
+    "uuid": "^11.1.0",
+    "ytdl-core": "npm:@distube/ytdl-core@^4.15.9",
+    "ytdl-core-discord": "^1.3.1"
+  }
+}
