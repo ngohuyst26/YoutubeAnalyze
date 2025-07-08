@@ -11,9 +11,11 @@ async function detectAIProbability(text) {
       },
     }
   );
+  console.log(res.data.documents);
+
   const data = {
-    average_generated_prob: res.documents.average_generated_prob,
-    ai_probability: res.documents.sentences,
+    ai_probability: res.data.documents[0].completely_generated_prob,
+    sentences: res.data.documents[0].sentences,
   };
 
   return data;

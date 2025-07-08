@@ -23,7 +23,7 @@ async function analyzeYoutube(url) {
 
   // 4. Detect AI probability for each sentence
   const aiProbality = await detectAIProbability(transcript.text);
-  console.log(aiProbality);
+  // console.log(aiProbality);
 
   // 5. Save result
   const result = {
@@ -31,6 +31,8 @@ async function analyzeYoutube(url) {
     language_code: transcript.language_code,
     language_probability: transcript.language_probability,
     content: transcript.text,
+    ai_probability: aiProbality.ai_probability,
+    sentences: aiProbality.sentences,
     words: transcript.words,
   };
 
