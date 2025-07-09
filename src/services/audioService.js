@@ -41,7 +41,7 @@ function downloadAndConvertAudio(url, finalOutputPath, options = {}) {
 
     // Thêm cookies nếu có
     if (cookies) {
-      ytdlpArgs.push("--cookies", cookies);
+      // ytdlpArgs.push("--cookies", cookies);
     }
 
     // Thêm các options bổ sung để tránh bot detection
