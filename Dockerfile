@@ -42,4 +42,4 @@ RUN mkdir -p /data
 EXPOSE 8080
 
 # Start ứng dụng
-CMD ["node", "app.js"]
+CMD ["node src/app.js", "app.js"]
