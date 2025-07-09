@@ -15,11 +15,12 @@ function downloadAndConvertAudio(url, finalOutputPath) {
     const timestamp = new Date().getTime();
     const tempFileName = `temp_audio_${timestamp}.m4a`;
     const cookies = JSON.parse(fs.readFileSync("cookies.json"));
+    const agent = ytdl.createProxyAgent({ uri: "http://47.122.65.254:8443" });
 
     ytdl(url, {
       filter: "audioonly",
       quality: "highestaudio",
-      cookie: cookies,
+      agent,
     })
       .pipe(fs.createWriteStream(tempFileName))
       .on("finish", () => {
