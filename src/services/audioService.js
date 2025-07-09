@@ -21,7 +21,7 @@ function downloadAndConvertAudio(url, finalOutputPath, options = {}) {
     const timestamp = new Date().getTime();
     const tempFileName = `temp_audio_${timestamp}.%(ext)s`;
     const maxRetries = options.maxRetries || 3;
-
+    const cookies = JSON.parse(fs.readFileSync("cookies.json"));
     // Xây dựng arguments cho yt-dlp
     const ytdlpArgs = [
       url,
@@ -40,8 +40,8 @@ function downloadAndConvertAudio(url, finalOutputPath, options = {}) {
     }
 
     // Thêm cookies nếu có
-    if (options.cookiesFile && fs.existsSync(options.cookiesFile)) {
-      ytdlpArgs.push("--cookies", options.cookiesFile);
+    if (cookies && fs.existsSync(cookies)) {
+      ytdlpArgs.push("--cookies", cookies);
     }
 
     // Thêm các options bổ sung để tránh bot detection
