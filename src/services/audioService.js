@@ -22,6 +22,8 @@ function downloadAndConvertAudio(url, finalOutputPath, options = {}) {
     const tempFileName = `temp_audio_${timestamp}.%(ext)s`;
     const maxRetries = options.maxRetries || 3;
     const cookies = JSON.parse(fs.readFileSync("cookies.json"));
+    // console.log(cookies);
+
     // Xây dựng arguments cho yt-dlp
     const ytdlpArgs = [
       url,
@@ -40,7 +42,8 @@ function downloadAndConvertAudio(url, finalOutputPath, options = {}) {
     }
 
     // Thêm cookies nếu có
-    if (cookies && fs.existsSync(cookies)) {
+    if (cookies) {
+      console.log(cookies);
       ytdlpArgs.push("--cookies", cookies);
     }
 
