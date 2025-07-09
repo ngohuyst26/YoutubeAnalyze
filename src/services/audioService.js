@@ -21,9 +21,7 @@ function downloadAndConvertAudio(url, finalOutputPath, options = {}) {
     const timestamp = new Date().getTime();
     const tempFileName = `temp_audio_${timestamp}.%(ext)s`;
     const maxRetries = options.maxRetries || 3;
-    const cookies = JSON.parse(fs.readFileSync("cookies.json"));
-    // console.log(cookies);
-
+    const cookies = fs.readFileSync("cookies.json");
     // Xây dựng arguments cho yt-dlp
     const ytdlpArgs = [
       url,
@@ -33,7 +31,7 @@ function downloadAndConvertAudio(url, finalOutputPath, options = {}) {
       tempFileName,
       "--no-playlist",
       "--user-agent",
-      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
+      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36",
     ];
 
     // Thêm proxy nếu có
@@ -43,8 +41,7 @@ function downloadAndConvertAudio(url, finalOutputPath, options = {}) {
 
     // Thêm cookies nếu có
     if (cookies) {
-      console.log(cookies);
-      ytdlpArgs.push("--cookies", cookies);
+      // ytdlpArgs.push("--cookies", cookies);
     }
 
     // Thêm các options bổ sung để tránh bot detection
