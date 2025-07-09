@@ -47,15 +47,14 @@ function downloadAndConvertAudio(url, finalOutputPath, options = {}) {
     // Thêm các options bổ sung để tránh bot detection
     ytdlpArgs.push(
       "--sleep-interval",
-      "1",
+      "4",
       "--max-sleep-interval",
-      "5",
+      "8",
       "--ignore-errors",
       "--no-warnings"
     );
 
     console.log(`Bắt đầu tải audio từ: ${url}`);
-    console.log(ytdlpArgs);
 
     // Hàm thực hiện download với retry
     const attemptDownload = (retryCount = 0) => {
