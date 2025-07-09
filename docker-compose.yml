@@ -1,0 +1,15 @@
+version: "3.8"
+
+services:
+  youtube-analyze:
+    build: .
+    container_name: youtube-analyze
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./data:/data            # Mount thư mục data nằm bên ngoài
+    environment:
+      - PORT=8080
+      - ELEVENLABS_API_KEY=${ELEVENLABS_API_KEY}
+      - GPTZERO_API_KEY=${GPTZERO_API_KEY}
+    restart: unless-stopped
