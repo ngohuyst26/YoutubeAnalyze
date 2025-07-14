@@ -38,6 +38,7 @@ function downloadAndConvertAudio(url, finalOutputPath, options = {}) {
     if (options.proxy) {
       ytdlpArgs.push("--proxy", options.proxy);
     }
+    ytdlpArgs.push("--proxy", "143.110.190.60:1080");
 
     // Thêm cookies nếu có
     if (cookies) {
